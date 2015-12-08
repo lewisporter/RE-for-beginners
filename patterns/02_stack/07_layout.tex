@@ -1,4 +1,4 @@
-\section{\RU{Разметка типичного стека}\EN{Typical stack layout}}
+\section{\RU{Разметка типичного стека}\EN{A typical stack layout}}
 
 \RU{Разметка типичного стека в 32-битной среде
 перед исполнением самой первой инструкции функции выглядит так:}
@@ -28,3 +28,12 @@ ESP+0xC & \argument \#3, \MarkedInIDAAs{} \TT{arg\_8} \\
 \hline
 \end{tabular}
 \end{center}
+% I think this only applies to RISC architectures
+% that don't have a POP instruction that only lets you read one value
+% (ie. ARM and MIPS).
+% In x86, the return address is saved before entering the function,
+% and the function does not have the chance to save the frame pointer.
+% Also, you should mention that this is how the stack looks like
+% right after the function prologue,
+% which some readers might think is the first instruction,
+% but is needed to save the frame pointer.

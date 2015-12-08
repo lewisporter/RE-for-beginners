@@ -6,7 +6,7 @@
 \index{x86!\Instructions!CALL}
 \RU{При вызове другой функции через \CALL сначала в стек записывается адрес, указывающий на место после 
 инструкции \CALL, затем делается безусловный переход (почти как \TT{JMP}) на адрес, указанный в операнде.} 
-\EN{When calling another function with a \CALL instruction the address of the point exactly after the \CALL instruction is saved 
+\EN{When calling another function with a \CALL instruction, the address of the point exactly after the \CALL instruction is saved 
 to the stack and then an unconditional jump to the address in the CALL operand is executed.} 
 
 \index{x86!\Instructions!PUSH}
@@ -90,7 +90,7 @@ programs also use the stack for saving return addresses, but differently}.
 \RU{Но если есть необходимость вызывать какую-то другую функцию и использовать регистр \ac{LR} ещё
 раз, его значение желательно сохранить}%
 \EN{If one needs, however, to call another function and use the \ac{LR} register
-one more time its value has to be saved}.
+one more time, its value has to be saved}.
 \index{Function prologue}
 \RU{Обычно это происходит в прологе функции, часто мы видим там инструкцию вроде}
 \EN{Usually it is saved in the function prologue. Often, we see instructions like}
@@ -110,9 +110,9 @@ to be used in the function are saved in the stack, including} \ac{LR}.
 \RU{А если эта функция небольшая, использует мало регистров, она может не использовать стек вообще}%
 \EN{If such function is small and uses a small number of registers, it may not use the stack at all}.
 \RU{Таким образом, в ARM возможен вызов небольших leaf-функций не используя стек.}
-\EN{Thus, it is possible to call leaf functions without using the stack}
+\EN{Thus, it is possible to call leaf functions without using the stack,}
 \RU{Это может быть быстрее чем в старых x86, ведь внешняя память для стека не используется}%
-\EN{which can be faster than on older x86 because external RAM is not used for the stack}%
+\EN{which can be faster than on older x86 machines because external RAM is not used for the stack}%
 \footnote{\RU{Когда-то, очень давно, на PDP-11 и VAX на инструкцию CALL (вызов других функций) могло тратиться
 вплоть до 50\% времени (возможно из-за работы с памятью),
 поэтому считалось, что много небольших функций это \glslink{anti-pattern}{анти-паттерн}}%

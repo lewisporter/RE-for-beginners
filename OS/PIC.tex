@@ -119,8 +119,8 @@ gcc -fPIC -shared -O3 -o 1.so 1.c
 \newcommand{\retstring}{\IT{<<returning \%d\textbackslash{}n>>}}
 \newcommand{\globvar}{\IT{global\_variable}}
 
-\RU{Так и есть: указатели на строку \retstring{} и переменную \globvar{} корректируются при каждом исполнении функции}%
-\EN{That's it: the pointers to \retstring{} and \globvar{} are to be corrected at each function execution.}\\
+\RU{Так и есть: указатели на строку \retstring{} и переменную \globvar{} корректируются при каждом исполнении функции.}%
+\EN{That's it: the pointers to \retstring{} and \globvar{} are to be corrected at each function execution.}\ESph{}\PTBRph{}\PLph{}\ITAph{}\\
 \RU{Функция}\EN{The} \TT{\_\_x86\_get\_pc\_thunk\_bx()} \RU{возвращает адрес точки после вызова самой себя (здесь: \TT{0x57C}) в \EBX}\EN{function returns in \EBX the address of the point after a call to itself (\TT{0x57C} here)}.
 \RU{Это очень простой способ получить значение указателя на текущую инструкцию (\EIP) в произвольном месте}
 \EN{That's a simple way to get the value of the program counter (\EIP) at some point}.

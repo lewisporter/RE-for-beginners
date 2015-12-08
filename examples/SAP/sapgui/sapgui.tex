@@ -6,7 +6,7 @@
 \RU{(Трассировка связи между переменной окружения \TDWNC{} SAPGUI\footnote{GUI-клиент от SAP}
 до \q{назойливого всплывающего окна} и самой функции сжатия данных.)}
 \EN{(Tracing the connection between the \TDWNC{} SAPGUI\footnote{SAP GUI client} environment variable and 
-the pesky nagging pop-up window and the actual data compression routine.)}
+the pesky annoying pop-up window and the actual data compression routine.)}
 
 \RU{Известно, что сетевой траффик между SAPGUI и SAP по умолчанию не шифруется, а сжимается} 
 \EN{It is known that the network traffic between SAPGUI and SAP is not encrypted by default, but compressed}
@@ -18,7 +18,7 @@ the pesky nagging pop-up window and the actual data compression routine.)}
 \EN{It is also known that by setting the environment variable \IT{\TDWNC} to 1, it is possible to turn the network packet compression off.}
 
 \RU{Но вы увидите окно, которое нельзя будет закрыть}
-\EN{But you will see a nagging pop-up window that cannot be closed}:
+\EN{But you will see a annoying pop-up window that cannot be closed}:
 
 \begin{figure}[H]
 \centering
@@ -232,7 +232,7 @@ SAPGUI\_INPLACE          & ``GUI-OPTION: environment variable SAPGUI\_INPLACE is
 
 \RU{А теперь, можем ли мы найти строку \IT{\q{data record mode switched on}}?}\EN{Now, can we find the \IT{\q{data record mode switched on}} string?}
 \RU{Да, и есть только одна ссылка на эту строку в функции}
-\EN{Yes, and the only reference is in} \\
+\EN{Yes, and the only reference is in}\ESph{}\PTBRph{}\PLph{}\ITAph{} \\
 \TT{CDwsGui::PrepareInfoWindow()}.
 \RU{Откуда мы узнали имена классов/методов? Здесь много специальных отладочных вызовов, пишущих в лог-файл вроде}%
 \EN{How do we get know the class/method names? There are a lot of special debugging calls that write to the log files, like}:
@@ -258,7 +258,7 @@ SAPGUI\_INPLACE          & ``GUI-OPTION: environment variable SAPGUI\_INPLACE is
 \RU{Они \IT{очень} полезны}\EN{It is \IT{very} useful}.
 
 \RU{Посмотрим содержимое функции \q{назойливого всплывающего окна}}
-\EN{So let's see the contents of this pesky nagging pop-up window's function}:
+\EN{So let's see the contents of this pesky annoying pop-up window's function}:
 
 \begin{lstlisting}
 .text:64404F4F CDwsGui__PrepareInfoWindow proc near
@@ -533,16 +533,16 @@ Depending on the option turned on in the object, a specific message part is to b
 \RU{Интересно, что в итоге, состояние переменной \IT{var\_10} определяет, будет ли показано сообщение вообще}
 \EN{It is interesting that finally the \IT{var\_10} variable state defines whether the message is to be shown at all}:
 
-\lstinputlisting{\RU{examples/SAP/sapgui/1ru.lst}\EN{examples/SAP/sapgui/1en.lst}}
+\lstinputlisting{examples/SAP/sapgui/1.\LANG}
 
 \RU{Давайте проверим нашу теорию на практике}\EN{Let's check our theory on practice}.
 
 \JNZ \RU{в этой строке}\EN{at this line} \dots
 
-\lstinputlisting{\RU{examples/SAP/sapgui/2ru.lst}\EN{examples/SAP/sapgui/2en.lst}}
+\lstinputlisting{examples/SAP/sapgui/2.\LANG}
 
 \dots \RU{заменим просто на \JMP и получим SAPGUI работающим без этого назойливого всплывающего окна!}
-\EN{replace it with just \JMP, and we get SAPGUI working without the pesky nagging pop-up window appearing!}
+\EN{replace it with just \JMP, and we get SAPGUI working without the pesky annoying pop-up window appearing!}
 
 \RU{Копнем немного глубже и проследим связь между смещением 0x15 в \TT{load\_command\_line()}
 (Это мы дали имя этой функции) и переменной \TT{this+0x3D} в \IT{CDwsGui::PrepareInfoWindow}. 
@@ -640,7 +640,7 @@ Here is one of them in the \IT{CDwsGui::SapguiRun} function (again, thanks to th
 Очевидно, это то самое место где флаг отражающий сжатие пакетов выставляется в объекте \TT{CConnectionContext}.}
 \EN{Let's check our findings. Replace the \TT{setz al} here with the \TT{xor eax, eax / nop} instructions,
 clear the \TDWNC 
-environment variable and run SAPGUI. Wow! There pesky nagging window is no more (just as expected, 
+environment variable and run SAPGUI. Wow! There pesky annoying window is no more (just as expected, 
 because the variable is not set) but in Wireshark we can see that the network packets are not compressed anymore! 
 Obviously, this is the point where the compression flag is to be set in the \IT{CConnectionContext} object.}
 

@@ -12,18 +12,18 @@
 the stack}.
 
 \RU{Так что указатель на строку передается через \EDI (32-битную часть регистра)}\EN{So the pointer to the
-string is passed in \EDI (32-bit part of register)}.
+string is passed in \EDI (the 32-bit part of the register)}.
 \RU{Но почему не через 64-битную часть}\EN{But why not use the 64-bit part}, \RDI?
 
 \RU{Важно запомнить что в 64-битном режиме все инструкции \MOV, записывающие что-либо в 
 младшую 32-битную часть регистра,
 обнуляют старшие 32-бита}\EN{It is important to keep in mind that all \MOV instructions in 64-bit mode
-that write something into the lower 32-bit register part, also clear the higher 32-bits}\cite{Intel}.
+that write something into the lower 32-bit register part also clear the higher 32-bits}\cite{Intel}.
 \RU{То есть, инструкция}\EN{I.e., the} \TT{MOV EAX, 011223344h} \RU{корректно запишет это значение в \RAX, 
 старшие биты сбросятся в ноль}\EN{writes a value into \RAX correctly, since the higher bits will be cleared}.
 
 \RU{Если посмотреть в \IDA скомпилированный объектный файл (.o), увидим также опкоды всех инструкций}%
-\EN{If we open the compiled object file (.o), we can also see all instruction's opcodes}%
+\EN{If we open the compiled object file (.o), we can also see all the instructions' opcodes}%
 \footnote{\RU{Это нужно задать в}\EN{This must be enabled in} 
 Options $\rightarrow$ Disassembly $\rightarrow$ Number of opcode bytes}:
 
@@ -42,9 +42,10 @@ Options $\rightarrow$ Disassembly $\rightarrow$ Number of opcode bytes}:
 the string will not be allocated at the addresses higher than 4\gls{GiB}.}
 
 \label{SysVABI_input_EAX}
-\RU{Здесь мы также видим обнуление регистра \EAX перед вызовом \printf}\EN{We also see that the \EAX register
-was cleared before the \printf function call}.
-\RU{Это делается потому что по стандарту передачи аргументов в *NIX для x86-64 
-в \EAX передается количество задействованных векторных регистров}\EN{This is done because the number of
-used vector registers is passed in \EAX by standard}:
-\q{with variable arguments passes information about the number of vector registers used} \cite{SysVABI}.
+\RU{Здесь мы также видим обнуление регистра \EAX перед вызовом \printf.
+Это делается потому что по стандарту передачи аргументов в *NIX для x86-64 в \EAX передается количество задействованных векторных регистров
+(\cite{SysVABI}).}
+\EN{We also see that the \EAX register was cleared before the \printf function call.
+This is done because the number of used vector registers is passed in \EAX in *NIX systems on x86-64 
+(\cite{SysVABI}).}
+

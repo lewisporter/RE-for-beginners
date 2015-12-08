@@ -106,7 +106,7 @@ The object file is in the main Oracle-library \TT{libserver11.a}.}
 \RU{Мы также знаем, что информацию обо всех fixed views можно получить из \IT{fixed view} под названием}
 \EN{We also know that the information about all fixed views can be retrieved from a \IT{fixed view} named} \TT{V\$FIXED\_VIEW\_DEFINITION}
 \RU{(кстати, информация для этого view также берется из таблиц \TT{kqfviw} и \TT{kqfvip}).}\EN{(by the way, the information for this view is also taken from the \TT{kqfviw} and \TT{kqfvip} tables.)}
-\RU{Кстати, там тоже 1023 элемента.}\EN{By the way, there are 1023 elements in those too.}
+\RU{Кстати, там тоже 1023 элемента. Совпадение? Нет.}\EN{By the way, there are 1023 elements in those too. Coincidence? No.}
 
 \begin{lstlisting}
 SQL> select * from V$FIXED_VIEW_DEFINITION where view_name='V$VERSION';
@@ -164,9 +164,8 @@ rodata:080185A0 kqfvip          dd offset _2__STRING_11126_0 ; DATA XREF: kqfgvc
 .rodata:08019594                 dd offset kqfv199_c_0
 \end{lstlisting}
 
-\RU{Таблица, по всей видимости, имеет 4 поля в каждом элементе. Кстати, здесь так же 1023 элемента.}
-\EN{The table appear to have 4 fields in each element.
-By the way, there are 1023 elements in it, again.}
+\RU{Таблица, по всей видимости, имеет 4 поля в каждом элементе. Кстати, здесь так же 1023 элемента, уже знакомое нам число.}
+\EN{The table appear to have 4 fields in each element. By the way, there are 1023 elements in it, again, the number we already know.}
 \RU{Второе поле указывает на другую таблицу, содержащую поля этого \IT{fixed view}.}
 \EN{The second field points to another table that contains the table fields for this \IT{fixed view}.}
 \RU{Для \TT{V\$VERSION}, эта таблица только из двух элементов, первый это 6 и второй это строка 

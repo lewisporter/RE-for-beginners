@@ -47,3 +47,39 @@ Korean, Chinese and Farsi translations are reserved by publishers.
 English and Russian versions I maintain by myself, but any fixes are very welcome!
 
 [Contact me](http://yurichev.com/contacts.html) for any questions.
+
+Style
+-----
+
+I deeply convinced that technical literature should should be terse and formal.
+Imagine you've got some reference book on your bookshelf.
+You need it once a month, to get Pi exact value from it or something like that.
+Perfect reference is a book where you'll see "Pi=3.14159..." and nothing else.
+Informal or verbose language in technical books annoys you each time you looking up for the information you need.
+
+Language
+--------
+
+On the other hand, terminology may be informal, just as typical modern IT bloggers use.
+Don't hesitate to use English words in your language if this is norm in IT speech of your language and there are no good translation yet.
+For example, Russian IT language is a mix of Russian and English words, and this is current language norm (at least in 2015), so I use this language in this book.
+
+Defined macros
+--------------
+
+Spanish: `\ES{}`
+Brazilian Portuguese: `\PTBR{}`
+Polish: `\PL{}`
+Italian: `\ITA{}`
+
+You may start to translate right now.
+To check your results, just run `make ES-lite`, `make PTBR-lite`, `make polish-lite`, `make IT-lite` (let's start with LITE version anyway).
+You'll see almost blank pages with only listings and screenshots, without any text.
+Grep for each `\EN{}` macro in .tex file and add your translation.
+Same story with .m4 files, there are `_ES()`, `_PTBR()`, `_PL()` and `_IT()` macros.
+
+There is also `\ESph{}`, `\PTBRph{}`, `\PLph{}` and `\ITph{}` placeholder macros in .tex files, where the translated text must be.
+You may start to translate there.
+
+Do not hesitate to contact me if you have any questions.
+

@@ -112,8 +112,8 @@ by checking the current time in the \TT{biostime()} function}.
 \EN{So the text string is selected randomly, passed into the dongle, and then the result of the hashing 
 is compared with the correct value}.
 
-\RU{Текстовые строки, похоже, выбирались так же случайно}
-\EN{The text strings seem to be chosen randomly as well}.
+\RU{Текстовые строки, похоже, составлялись так же случайно, во время разработки ПО.}%
+\EN{The text strings seem to be constructed randomly as well, during software development.}
 
 \RU{И вот как вызывается главная процедура проверки донглы}
 \EN{And this is how the main dongle checking function is called}:
@@ -169,8 +169,9 @@ loads the ES:BX pair simultaneously from the passed argument}.
 \RU{\MOV на \TT{seg030:00F5} загружает байт из памяти, на который указывает пара ES:BX.}
 \EN{The \MOV at \TT{seg030:00F5} loads the byte from the memory at which the ES:BX pair points.}
 
-\RU{На \TT{seg030:00F2} \glslink{increment}{инкрементируется} только 16-битное слово,
-но не значение сегмента.}
-\EN{At \TT{seg030:00F2} only a 16-bit word is \glslink{increment}{incremented}, not segment value.}
-\RU{Это значит, что переданная в функцию строка не может находится на границе двух сегментов.}
-\EN{This implies that the string passed to the function cannot be located on the boundary between two data segments.}
+% TODO rewrite
+%\RU{На \TT{seg030:00F2} \glslink{increment}{инкрементируется} только вторая 16-битная пара адреса.}
+%\EN{At \TT{seg030:00F2} only a second 16-bit part of address is \glslink{increment}{incremented}.}
+%\RU{Это значит, что переданная в функцию строка не может находиться на границе двух сегментов.}
+%\EN{This implies that the string passed to the function cannot be located on the boundary between two data segments.}
+

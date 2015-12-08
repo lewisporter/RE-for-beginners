@@ -26,10 +26,10 @@ globally.}
 \RU{Выделение происходит просто при объявлении переменных/массивов локально в функции.}
 \EN{The allocation is done just by declaring variables/arrays locally in the function.}
 \RU{Обычно это локальные для функции переменные}\EN{These are usually local variables for the function}.
-\RU{Иногда эти локальные переменные также доступны и для нисходящих функций (если функция передает
-указатель на переменную в следующую функцию).}
-\EN{Sometimes these local variable are also available to descending functions (if one passes
-a pointer to a variable to the function to be executed).}
+\RU{Иногда эти локальные переменные также доступны и для нисходящих функций (\gls{callee}-функциям, если функция-\gls{caller} передает
+указатель на переменную в функцию-\gls{callee}).}
+\EN{Sometimes these local variable are also available to descending functions 
+(to \gls{callee} functions, if caller passes a pointer to a variable to the \gls{callee} to be executed).}
 \RU{Выделение и освобождение очень быстрое, достаточно просто сдвига \ac{SP}.}
 \EN{Allocation and deallocation are very fast, it's just \ac{SP} needs to be shifted.}
 \index{\CStandardLibrary!alloca()}

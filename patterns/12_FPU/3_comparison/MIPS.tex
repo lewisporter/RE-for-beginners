@@ -1,14 +1,12 @@
 \subsection{MIPS}
 
 \index{MIPS!\Registers!FCCR}
-\EN{The co-processor of the most popular MIPS processor has only one condition bit which can be set in the FPU 
-and checked in the CPU.}
-\RU{В сопроцессоре наиболее популярных MIPS есть только один бит результата, который устанавливается в FPU и 
-проверяется в CPU.}
+\EN{The co-processor of the MIPS processor has a condition bit which can be set in the FPU and checked in the CPU.}
+\RU{В сопроцессоре MIPS есть бит результата, который устанавливается в FPU и проверяется в CPU.}
 \EN{Earlier MIPS-es have only one condition bit (called FCC0), later ones have 8 (called FCC7-FCC0).}
-\RU{Ранние MIPS имели только один бит (с названием FCC0), у поздних их 8 (с названием FCC7-FCC0).}
-\RU{Эти биты находятся в регистре с названием FCCR.}
-\EN{These bits are located in the register called FCCR.}
+\RU{Ранние MIPS имели только один бит (с названием FCC0), а у поздних их 8 (с названием FCC7-FCC0).}
+\RU{Этот бит (или биты) находятся в регистре с названием FCCR.}
+\EN{This bit (or bits) are located in the register called FCCR.}
 
 \lstinputlisting[caption=\Optimizing GCC 4.4.5 (IDA)]{patterns/12_FPU/3_comparison/MIPS_O3_IDA.lst.\LANG}
 

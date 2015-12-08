@@ -56,7 +56,7 @@ the source code for which was lost\footnote{He also got permission from the cust
 \index{\CStandardLibrary!ftell()}
 \RU{Узнать размер файла используя}\EN{Get the file size via} \TT{fseek()}/\TT{ftell()}:
 
-\lstinputlisting{\RU{examples/qr9/1ru.asm}\EN{examples/qr9/1en.asm}}
+\lstinputlisting{examples/qr9/1.\LANG}
 
 \RU{Этот фрагмент кода вычисляет длину файла, выровненную по 64-байтной границе.
 Это потому что этот алгоритм шифрования работает только с блоками размерами 64 байта.
@@ -71,7 +71,7 @@ then multiply by 64.
 The following code removes the remainder as if the value was already divided by 64 and adds 64. 
 It is almost the same.}
 
-\lstinputlisting{\RU{examples/qr9/2ru.asm}\EN{examples/qr9/2en.asm}}
+\lstinputlisting{examples/qr9/2.\LANG}
 
 \RU{Выделить буфер с выровненным размером:}\EN{Allocate buffer with aligned size:}
 
@@ -85,7 +85,7 @@ It is almost the same.}
 заменить на calloc()}.}\EN{Call memset(), e.g., clear the allocated buffer\footnote{malloc() + memset() could 
 be replaced by calloc()}.}
 
-\lstinputlisting{\RU{examples/qr9/3ru.asm}\EN{examples/qr9/3en.asm}}
+\lstinputlisting{examples/qr9/3.\LANG}
 
 \RU{Чтение файла используя стандартную функцию Си}\EN{Read file via the standard C function} \TT{fread()}.
 
@@ -575,7 +575,7 @@ You can read more about it in the \q{\DivisionByNineSectionName} section~(\myref
 
 \RU{\EDX\EMDASH{}остаток от деления.}\EN{\EDX is the remainder of the division.}
 
-\lstinputlisting{\RU{examples/qr9/4ru.asm}\EN{examples/qr9/4en.asm}}
+\lstinputlisting{examples/qr9/4.\LANG}
 
 \RU{Если остаток 2, вызываем \TT{rotate3()}. 
 \EDX это второй аргумент функции \TT{rotate\_all\_with\_password()}. 
@@ -867,7 +867,7 @@ bool get_bit (int x, int y, int shift)
 
 \RU{Здесь два вложенных цикла:}\EN{Here we have two nested loops:}
 
-\lstinputlisting{\RU{examples/qr9/5ru.asm}\EN{examples/qr9/5en.asm}} % FIXME1: \LANG
+\lstinputlisting{examples/qr9/5.\LANG}
 
 \RU{Мы видим, что оба счетчика циклов в интервале 0..7. 
 Также, они используются как первый и второй аргумент \TT{get\_bit()}.
@@ -880,7 +880,7 @@ The return value from \TT{get\_bit()} is placed in the internal array.}
 
 \RU{Снова приготовить указатель на внутренний массив:}\EN{Prepare a pointer to the internal array again:}
 
-\lstinputlisting{\RU{examples/qr9/6ru.asm}\EN{examples/qr9/6en.asm}}
+\lstinputlisting{examples/qr9/6.\LANG}
 
 \RU{\dots этот код помещает содержимое из внутреннего массива в глобальный массив cube используя функцию 
 \TT{set\_bit()}, \IT{но}, в обратном порядке!
@@ -910,7 +910,7 @@ void rotate1 (int v)
 \RU{Не очень понятно, но если мы посмотрим в функцию \TT{rotate2()}:}
 \EN{Not very understandable, but if we take a look at \TT{rotate2()} function:}
 
-\lstinputlisting{\RU{examples/qr9/7ru.asm}\EN{examples/qr9/7en.asm}}
+\lstinputlisting{examples/qr9/7.\LANG}
 
 \RU{\IT{Почти} то же самое, за исключением иного порядка аргументов в \TT{get\_bit()} и \TT{set\_bit()}.
 Перепишем это на Си-подобный код:}

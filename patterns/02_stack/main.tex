@@ -21,8 +21,8 @@
 
 \RU{\POP это обратная операция~--- сначала достает из \glslink{stack pointer}{указателя стека} значение и помещает его в операнд 
 (который очень часто является регистром) и затем увеличивает указатель стека на 4 (или 8).}
-\EN{\POP is the reverse operation: retrieve the data from memory pointed by \ac{SP}, 
-loads it into the instruction operand (often a register) and then add 4 (or 8) to the \gls{stack pointer}.}
+\EN{\POP is the reverse operation: retrieve the data from the memory location that \ac{SP} points to, 
+load it into the instruction operand (often a register) and then add 4 (or 8) to the \gls{stack pointer}.}
 
 \RU{В самом начале \glslink{stack pointer}{регистр-указатель} указывает на конец стека.}
 \EN{After stack allocation, the \gls{stack pointer} points at the bottom of the stack.}
@@ -35,7 +35,7 @@ It seems strange, but that's the way it is.}
 \ifdefined\IncludeARM
 \RU{В процессоре ARM, тем не менее, есть поддержка стеков, растущих как в сторону уменьшения, так и в
 сторону увеличения.}
-\EN{ARM supports both descending and ascending stacks.} \\
+\EN{ARM supports both descending and ascending stacks.}
 \index{ARM!\Instructions!STMFD}
 \index{ARM!\Instructions!LDMFD}
 \index{ARM!\Instructions!STMED}
@@ -59,10 +59,17 @@ It seems strange, but that's the way it is.}
 (grows upwards, starting from a low address and progressing to a higher one).}
 \fi
 
+% It might be worth mentioning that STMED and STMEA write first,
+% and then move the pointer,
+% and that LDMED and LDMEA move the pointer first, and then read.
+% In other words, ARM not only lets the stack grow in a non-standard direction,
+% but also in a non-standard order.
+% Maybe this can be in the glossary, which would explain why E stands for "empty".
+
 \section{\RU{Почему стек растет в обратную сторону?}\EN{Why does the stack grow backwards?}}
 
 \RU{Интуитивно мы можем подумать, что, как и любая другая структура данных, стек мог бы расти вперед, 
-т.е. в сторону увеличения адресов}\EN{Intuitively, we might think that the stack grow upwards, i.e. towards
+т.е. в сторону увеличения адресов}\EN{Intuitively, we might think that the stack grows upwards, i.e. towards
 higher addresses, like any other data structure}.
 
 \RU{Причина, почему стек растет назад, вероятно, историческая}%
@@ -114,6 +121,13 @@ The user-core part of an image is divided into three logical segments. The progr
 notes for the first lecture are written as usual, 
 and notes for the second one are written from the end of notebook, by flipping it.
 Notes may meet each other somewhere in between, in case of lack of free space.}
+% I think if we want to expand on this analogy,
+% one might remember that the line number increases as as you go down a page.
+% So when you decrease the address when pushing to the stack, visually,
+% the stack does grow upwards.
+% Of course, the problem is that in most human languages,
+% just as with computers,
+% we write downwards, so this direction is what makes buffer overflows so messy.
 
 \section{\RU{Для чего используется стек?}\EN{What is the stack used for?}}
 
@@ -129,12 +143,12 @@ Notes may meet each other somewhere in between, in case of lack of free space.}
 
 \RU{Возможно, причина хранения локальных переменных и SEH-записей в стеке в том, что после выхода из функции, всё эти данные освобождаются автоматически,
 используя только одну инструкцию корректирования указателя стека (часто это ADD).}
-\EN{Perhaps, the reason of storing local variables and SEH records in stack is because they are freed automatically upon function exit,
-using just one instruction of stack pointer correcting (it is often ADD).}
+\EN{Perhaps, the reason for storing local variables and SEH records in the stack is that they are freed automatically upon function exit,
+using just one instruction to correct the stack pointer (it is often ADD).}
 \RU{Аргументы функций, можно сказать, тоже освобождаются автоматически в конце функции.}
-\EN{Function arguments, as we could say, also deallocated automatically at the end of function.}
+\EN{Function arguments, as we could say, are also deallocated automatically at the end of function.}
 \RU{А всё что хранится в куче (\IT{heap}) нужно освобождать явно.}
-\EN{On contrary, everything stored in \IT{heap} must be deallocated explicitly.}
+\EN{In contrast, everything stored in the \IT{heap} must be deallocated explicitly.}
 
 % sections
 \input{patterns/02_stack/07_layout}

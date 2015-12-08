@@ -72,7 +72,7 @@ the code which place the mines}:
 .text:010036E3                 shl     ecx, 5          ; ECX=ECX*32
 .text:010036E6                 test    _rgBlk[ecx+esi], 80h
 .text:010036EE                 jnz     short loc_10036C7
-.text:010036F0                 shl     eax, 5          ; ECX=ECX*32
+.text:010036F0                 shl     eax, 5          ; EAX=EAX*32
 .text:010036F3                 lea     eax, _rgBlk[eax+esi]
 .text:010036FA                 or      byte ptr [eax], 80h
 .text:010036FD                 dec     _cBombStart
@@ -232,6 +232,8 @@ process currently running.}
 \EN{Modify my utility so it can work without the array address specified and without a \gls{PDB} file.}
 \RU{Да, вполне возможно автоматически найти информацию о доске в сегменте данных в запущенном процессе Сапёра.}
 \EN{Yes, it's possible to find board information in the data segment of Minesweeper's running process automatically.}
-\RU{Подсказка}\EN{Hint}: \myref{minesweeper_winxp_hint}.
+%\RU{Подсказка}\EN{Hint}: \myref{minesweeper_winxp_hint}.
+%\RU{Подсказка}\EN{Hint}: \RU{подумайте о байтах, описывающих границы (0x10).}
+%\EN{think about  \IT{border bytes} (0x10).}
 
 \end{itemize}

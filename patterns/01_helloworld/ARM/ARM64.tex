@@ -9,8 +9,8 @@
 
 \RU{В ARM64 нет режима Thumb и Thumb-2, только ARM, так что тут только 32-битные инструкции.}
 \EN{There are no Thumb and Thumb-2 modes in ARM64, only ARM, so there are 32-bit instructions only.}
-\RU{Регистров тут в 2 раза больше}\EN{Registers count is doubled}: \myref{ARM64_GPRs}.
-\RU{64-битные регистры теперь имеют префикс}\EN{64-bit registers has} 
+\RU{Регистров тут в 2 раза больше}\EN{The Register count is doubled}: \myref{ARM64_GPRs}.
+\RU{64-битные регистры теперь имеют префикс}\EN{64-bit registers have} 
 \TT{X-}\EN{ prefixes, while its 32-bit parts}\RU{, а их 32-битные части}\EMDASH{}\TT{W-}.
 
 \index{ARM!\Instructions!STP}
@@ -18,22 +18,22 @@
 \RU{сохраняет в стеке сразу два регистра}\EN{saves two registers in the stack simultaneously}: \RegX{29} \InENRU \RegX{30}.
 \RU{Конечно, эта инструкция может сохранять эту пару где угодно в памяти, но здесь указан регистр \ac{SP}, так что
 пара сохраняется именно в стеке.}
-\EN{Of course, this instruction is able to save this pair at a random place of memory, 
+\EN{Of course, this instruction is able to save this pair at an arbitrary place in memory, 
 but the \ac{SP} register is specified here, so the pair is saved in the stack.}
 \RU{Регистры в ARM64 64-битные, каждый имеет длину в 8 байт, так что для хранения двух регистров нужно именно 16 байт.}
 \EN{ARM64 registers are 64-bit ones, each has a size of 8 bytes, so one needs 16 bytes for saving two registers.}
 
 \RU{Восклицательный знак после операнда означает, что сначала от \ac{SP} будет отнято 16 и только затем
 значения из пары регистров будут записаны в стек.}
-\EN{Exclamation mark after operand mean that 16 is to be subtracted from \ac{SP} first, and only then
-values from registers pair are to be written into the stack.}
+\EN{The exclamation mark after the operand means that 16 is to be subtracted from \ac{SP} first, and only then
+are values from register pair to be written into the stack.}
 \RU{Это называется}\EN{This is also called} \IT{pre-index}.
 \RU{Больше о разнице между}\EN{About the difference between} \IT{post-index} \AndENRU \IT{pre-index} 
 \RU{описано здесь}\EN{read here}: \myref{ARM_postindex_vs_preindex}.
 
 \RU{Таким образом, в терминах более знакомого всем процессора x86, первая инструкция~--- это просто аналог 
 пары инструкций}
-\EN{Hence, in the terms of more familiar x86, the first instruction is just an analogue to pair of}
+\EN{Hence, in terms of the more familiar x86, the first instruction is just an analogue to a pair of}
 \TT{PUSH X29} \AndENRU \TT{PUSH X30}.
 \RegX{29} \EN{is used as \ac{FP} in ARM64}\RU{в ARM64 используется как \ac{FP}}, \EN{and}\RU{а} \RegX{30} 
 \EN{as}\RU{как} \ac{LR}, \RU{поэтому они сохраняются в прологе функции и
@@ -45,7 +45,7 @@ values from registers pair are to be written into the stack.}
 \label{pointers_ADRP_and_ADD}
 \index{ARM!\Instructions!ADRP/ADD pair}
 \RU{Инструкции }\TT{ADRP} \AndENRU \ADD \EN{instructions are used to fill the 
-string}\RU{нужны для формирования адреса строки} \q{Hello!} \EN{address into the \RegX{0} register}\RU{в регистре \RegX{0}}, 
+address of the string}\RU{нужны для формирования адреса строки} \q{Hello!} \EN{into the \RegX{0} register}\RU{в регистре \RegX{0}}, 
 \RU{ведь первый аргумент функции передается через этот регистр}\EN{because the first function argument is passed
 in this register}.
 \RU{Но в ARM нет инструкций, при помощи которых можно записать в регистр длинное число}\EN{There are
@@ -53,10 +53,10 @@ no instructions, whatsoever, in ARM that can store a large number into a registe
 (\RU{потому что сама длина инструкции ограничена 4-я байтами. Больше об этом здесь}\EN{because the instruction
 length is limited to 4 bytes, read more about it here}: \myref{ARM_big_constants_loading}).
 \RU{Так что нужно использовать несколько инструкций}\EN{So several instructions must be utilised}.
-\RU{Первая инструкция}\EN{The first instruction} (\TT{ADRP}) \EN{writes address of 4Kb page where the string is
-located into \RegX{0}}\RU{записывает в \RegX{0} адрес 4-килобайтной страницы где находится строка}, 
-\EN{and the the second one}\RU{а вторая} (\ADD) \RU{просто прибавляет к этому адресу остаток}\EN{just adds
-reminder to the address}.
+\RU{Первая инструкция}\EN{The first instruction} (\TT{ADRP}) \EN{writes the address of the 4KiB page, where the string is
+located, into \RegX{0}}\RU{записывает в \RegX{0} адрес 4-килобайтной страницы где находится строка}, 
+\EN{and the second one}\RU{а вторая} (\ADD) \RU{просто прибавляет к этому адресу остаток}\EN{just adds
+the remainder to the address}.
 \EN{More about that in}\RU{Читайте больше об этом}: \myref{ARM64_relocs}.
 
 \TT{0x400000 + 0x648 = 0x400648}, \EN{and we see our \q{Hello!} C-string in the \TT{.rodata} data segment at this
@@ -65,10 +65,10 @@ address}\RU{и мы видим, что в секции данных \TT{.rodata}
 
 \index{ARM!\Instructions!BL}
 \RU{Затем при помощи инструкции \TT{BL} вызывается \puts. Это уже рассматривалось ранее: \myref{puts}.}
-\EN{\puts is called afterwards using \TT{BL} instruction. This was already discussed: \myref{puts}.}
+\EN{\puts is called afterwards using the \TT{BL} instruction. This was already discussed: \myref{puts}.}
 
-\RU{Инструкция }\MOV \EN{instruction writes 0 into}\RU{записывает 0 в} \RegW{0}. 
-\RegW{0} \RU{это младшие 32 бита 64-битного регистра}\EN{is low 32 bits of 64-bit} \RegX{0}\EN{ register}:
+\RU{Инструкция }\MOV \EN{writes 0 into}\RU{записывает 0 в} \RegW{0}. 
+\RegW{0} \RU{это младшие 32 бита 64-битного регистра}\EN{is the lower 32 bits of the 64-bit} \RegX{0}\EN{ register}:
 
 \input{ARM_X0_register}
 
@@ -76,17 +76,17 @@ address}\RU{и мы видим, что в секции данных \TT{.rodata}
 так что вот так готовится возвращаемый результат.}
 \EN{The function result is returned via \RegX{0} and \main returns 0, so that's how the return
 result is prepared.}
-\RU{Почему именно 32-битная часть}\EN{But why using the 32-bit part}?
+\RU{Почему именно 32-битная часть}\EN{But why use the 32-bit part}?
 \RU{Потому в ARM64, как и в x86-64, тип \Tint оставили 32-битным, для лучшей совместимости.}
-\EN{Because \Tint data type in ARM64, just like in x86-64, is still 32-bit, for better compatibility.}
+\EN{Because the \Tint data type in ARM64, just like in x86-64, is still 32-bit, for better compatibility.}
 \RU{Следовательно, раз уж функция возвращает 32-битный \Tint, то нужно заполнить только 32 младших бита 
 регистра \RegX{0}.}
-\EN{So if a function returns 32-bit \Tint, only the low 32 bits of \RegX{0} register has to be filled.}
+\EN{So if a function returns a 32-bit \Tint, only the lower 32 bits of \RegX{0} register have to be filled.}
 
 \RU{Для того, чтобы удостовериться в этом, немного отредактируем этот пример и перекомпилируем его.}%
 \EN{In order to verify this, let's change this example slightly and recompile it.}
 \RU{Теперь \main возвращает 64-битное значение:}%
-\EN{Now \main returns 64-bit value:}
+\EN{Now \main returns a 64-bit value:}
 
 \begin{lstlisting}[caption=\main \RU{возвращающая значение типа}\EN{returning a value of} \TT{uint64\_t}\EN{ type}]
 #include <stdio.h>
@@ -108,15 +108,15 @@ uint64_t main()
 
 \index{ARM!\Instructions!LDP}
 \RU{Далее при помощи инструкции \TT{LDP} (\IT{Load Pair}) восстанавливаются регистры \RegX{29} и \RegX{30}.}
-\EN{\TT{LDP} (\IT{Load Pair}) then restores \RegX{29} and \RegX{30} registers.}
+\EN{\TT{LDP} (\IT{Load Pair}) then restores the \RegX{29} and \RegX{30} registers.}
 \RU{Восклицательного знака после инструкции нет. Это означает, что сначала значения достаются из стека,
 и только потом \ac{SP} увеличивается на 16.}
 \EN{There is no exclamation mark after the instruction: this implies that the value is first loaded from the stack,
-only then \ac{SP} it is increased by 16.}
+and only then is \ac{SP} increased by 16.}
 \RU{Это называется}\EN{This is called} \IT{post-index}.
 
 \index{ARM!\Instructions!RET}
-\RU{В ARM64 есть новая инструкция}\EN{New instruction appeared in ARM64}: \RET. 
+\RU{В ARM64 есть новая инструкция}\EN{A new instruction appeared in ARM64}: \RET. 
 \RU{Она работает так же как и}\EN{It works just as} \TT{BX LR}, \RU{но там добавлен специальный бит,
 подсказывающий процессору, что это именно выход из функции, а не просто переход, чтобы процессор
 мог более оптимально исполнять эту инструкцию}\EN{only a special \IT{hint} bit is added, informing the \ac{CPU}

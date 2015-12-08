@@ -1,7 +1,7 @@
 \section{\RU{Мусор в стеке}\EN{Noise in stack}}
 
 \RU{Часто в этой книге говорится о \q{шуме} или \q{мусоре} в стеке или памяти.}
-\EN{Often in this book \q{noise} or \q{garbage} values in stack or memory are mentioned.}
+\EN{Often in this book \q{noise} or \q{garbage} values in the stack or memory are mentioned.}
 \RU{Откуда он берется}\EN{Where do they come from}?
 \RU{Это то, что осталось там после исполнения предыдущих функций.}
 \EN{These are what was left in there after other functions' executions.}
@@ -54,7 +54,7 @@ what a weird thing! We did not set any variables in} \TT{f2()}.
 \end{figure}
 
 \RU{Когда}\EN{When} \TT{f1()} \RU{заполняет переменные}\EN{assigns the variables} $a$, $b$ \AndENRU $c$ 
-\RU{они сохраняются по адресу}\EN{, their values are stored at the address} \TT{0x14F860} 
+\RU{они сохраняются по адресу}\EN{, their values are stored at the address} \TT{0x1FF860} 
 \RU{\etc{}.}\EN{and so on.}
 
 \clearpage
@@ -75,8 +75,8 @@ what a weird thing! We did not set any variables in} \TT{f2()}.
 \RU{Для создания такой странной ситуации несколько функций должны исполняться друг за другом
 и \ac{SP} должен быть одинаковым при входе в функции, т.е. у функций должно быть равное количество
 аргументов). Тогда локальные переменные будут расположены в том же месте стека.}
-\EN{So, for this weird situation, several functions has to be called one after another and
-\ac{SP} has to be the same at each function entry (i.e., they  has same number
+\EN{So, for this weird situation to occur, several functions have to be called one after another and
+\ac{SP} has to be the same at each function entry (i.e., they have the same number
 of arguments). Then the local variables will be located at the same positions in the stack.}
 
 \RU{Подводя итоги, все значения в стеке (да и памяти вообще) это значения оставшиеся от 
@@ -86,8 +86,55 @@ have values left there from previous function executions.}
 \RU{Строго говоря, они не случайны, они скорее непредсказуемы.}
 \EN{They are not random in the strict sense, but rather have unpredictable values.}
 
-\RU{А как иначе}\EN{Is there other option}?
+\RU{А как иначе}\EN{Is there another option}?
 \RU{Можно было бы очищать части стека перед исполнением каждой функции,
 но это слишком много лишней (и ненужной) работы.}
 \EN{It probably would be possible to clear portions of the stack before each function execution,
 but that's too much extra (and unnecessary) work.}
+
+\subsection{MSVC 2013}
+
+\EN{The example was compiled by}\RU{Этот пример был скомпилирован в} MSVC 2010.
+\EN{But the reader of this book made attempt to compile this example in MSVC 2013, ran it, and got all 3 numbers reversed:}%
+\RU{Но один читатель этой книги сделал попытку скомпилировать пример в MSVC 2013, запустил и увидел 3 числа в обратном порядке:}
+
+\begin{lstlisting}
+c:\Polygon\c>st
+3, 2, 1
+\end{lstlisting}
+
+\EN{Why?}\RU{Почему?}
+
+\EN{I also compiled this example in MSVC 2013 and saw this:}%
+\RU{Я также попробовал скомпилировать этот пример в MSVC 2013 и увидел это:}
+
+\begin{lstlisting}[caption=MSVC 2013]
+_a$ = -12						; size = 4
+_b$ = -8						; size = 4
+_c$ = -4						; size = 4
+_f2	PROC
+
+...
+
+_f2	ENDP
+
+_c$ = -12						; size = 4
+_b$ = -8						; size = 4
+_a$ = -4						; size = 4
+_f1	PROC
+
+...
+
+_f1	ENDP
+\end{lstlisting}
+
+\EN{Unlike MSVC 2010, MSVC 2013 allocated a/b/c variables in function \TT{f2()} in reverse order.}%
+\RU{В отличии от MSVC 2010, MSVC 2013 разместил переменные a/b/c в функции \TT{f2()} в обратном порядке.}
+\EN{And this is completely correct, because \CCpp standards has no rule, in which order local variables must be allocated in the local stack, if at all.}%
+\RU{И это полностью корректно, потому что в стандартах \CCpp нет правила, в каком порядке локальные переменные должны быть размещены в локальном стеке,
+если вообще.}
+\EN{The reason of difference is because MSVC 2010 has one way to do it, and MSVC 2013 has probably something changed inside of compiler guts, so it behaves
+slightly different.}%
+\RU{Разница есть из-за того что MSVC 2010 делает это одним способом, а в MSVC 2013, вероятно, что-то немного изменили во внутренностях компилятора,
+так что он ведет себя слегка иначе.}
+

@@ -1,4 +1,9 @@
-\chapter{\RU{Простейшая функция}\EN{The simplest Function}}
+\chapter{%
+\RU{Простейшая функция}%
+\EN{The simplest Function}%
+\ES{Spanish text here}%
+\PTBR{Brazilian portuguese text here}%
+}
 
 \RU{Наверное, простейшая из возможных функций это та что возвращает некоторую константу:}%
 \EN{The simplest possible function is arguably one that simply returns a constant value:}
@@ -15,8 +20,6 @@
 \RU{И вот что делает оптимизирующий GCC}\EN{Here's what both the optimizing GCC and MSVC compilers produce on the x86 platform}:
 
 \lstinputlisting[caption=\Optimizing GCC/MSVC (\assemblyOutput)]{patterns/00_ret/1.s}
-
-\RU{Результат работы MSVC точно такой же}
 
 \index{x86!\Instructions!RET}
 \RU{Здесь только две инструкции. Первая помещает значение 123 в регистр \EAX, который используется
@@ -47,7 +50,7 @@ so the \TT{BX LR} instruction causes execution to jump to that address\EMDASH{}e
 \index{ARM!\Instructions!MOV}
 \index{x86!\Instructions!MOV}
 \RU{Нужно отметить, что название инструкции \MOV в x86 и ARM сбивает с толку.}
-\EN{It worth noting that \MOV is a misleading name for the instruction in both x86 and ARM \ac{ISA}s. }
+\EN{It is worth noting that \MOV is a misleading name for the instruction in both x86 and ARM \ac{ISA}s. }
 \RU{На самом деле, данные не \IT{перемещаются}, а скорее \IT{копируются}.}
 \EN{The data is not in fact \IT{moved}, but \IT{copied}.}
 
@@ -88,10 +91,10 @@ jumping to the address in the \$31 (or \$RA) register.}
 \RU{На самом деле, нам не нужно вникать в эти детали.}
 \RU{Нужно просто запомнить: в MIPS инструкция после инструкции перехода исполняется \IT{перед} 
 инструкцией перехода.}
-\EN{The why this happens is due to quirk in the architecture of some RISC \ac{ISA}s and isn't important for our purposes - we just need to remember that in MIPS, the instruction following a jump or branch instruction
+\EN{The reason this happens is a quirk in the architecture of some RISC \ac{ISA}s and isn't important for our purposes - we just need to remember that in MIPS, the instruction following a jump or branch instruction
 is executed \IT{before} the jump/brunch instruction itself.}
 \RU{Таким образом, инструкция перехода всегда поменена местами с той, которая должна быть исполнена перед ней.}
-\EN{As a consequence, branch instructions always swap place with the instruction which must be executed beforehand.}
+\EN{As a consequence, branch instructions always swap places with the instruction which must be executed beforehand.}
 % A footnote/link to http://en.wikipedia.org/wiki/Delay_slot#Branch_delay_slots or
 % something similar might be useful for the people more interested in it.
 

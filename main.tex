@@ -15,12 +15,36 @@
 \defaultfontfeatures{Scale=MatchLowercase} % ensure all fonts have the same 1ex
 \usepackage{ucharclasses}
 \usepackage{csquotes}
+
+\ifdefined\ENGLISH
+\setmainlanguage{english}
+\setotherlanguage{russian}
+\fi
+
 \ifdefined\RUSSIAN
 \setmainlanguage{russian}
 \newfontfamily\cyrillicfonttt{Droid Sans Mono}
 \setotherlanguage{english}
-\else
-\setmainlanguage{english}
+\fi
+
+\ifdefined\SPANISH
+\setmainlanguage{spanish}
+\setotherlanguage{english}
+\fi
+
+\ifdefined\ITALIAN
+\setmainlanguage{italian}
+\setotherlanguage{english}
+\fi
+
+\ifdefined\BRAZILIAN
+\setmainlanguage{portuges}
+\setotherlanguage{english}
+\fi
+
+\ifdefined\POLISH
+\setmainlanguage{polish}
+\setotherlanguage{english}
 \fi
 
 \usepackage{microtype}
@@ -130,8 +154,8 @@
 
 \makeglossaries
 
-\newcommand{\TITLE}{\RU{Reverse Engineering для начинающих}\EN{Reverse Engineering for Beginners}}
-\newcommand{\AUTHOR}{\RU{Денис Юричев}\EN{Dennis Yurichev}}
+\newcommand{\TITLE}{\RU{Reverse Engineering для начинающих}\EN{Reverse Engineering for Beginners}\ESph{}\PTBRph{}\PLph{}\ITAph{}}
+\newcommand{\AUTHOR}{\RU{Денис Юричев}\EN{Dennis Yurichev}\ESph{}\PTBRph{}\PLph{}\ITAph{}}
 \newcommand{\EMAIL}{dennis(a)yurichev.com}
 
 \hypersetup{
@@ -162,7 +186,21 @@
 }
 
 \DeclareMathSizes{12}{30}{16}{12}
-\bibliography{C_book_\LANG,books,articles,usenet,misc}
+\EN{
+	\bibliography{C_book_en,books,articles,usenet,misc}
+}
+\PL{
+	\bibliography{C_book_pl,books,articles,usenet,misc}
+}
+\ES{
+	\bibliography{C_book_en,books,articles,usenet,misc}
+}
+\PTBR{
+	\bibliography{C_book_en,books,articles,usenet,misc}
+}
+\RU{
+	\bibliography{C_book_ru,books,articles,usenet,misc}
+}
 
 \begin{document}
 
@@ -176,10 +214,10 @@
 \ifdefined\LITE
 \include{LITE_warning}
 \fi
-\include{survey}
+%\include{survey}
 
 \ifx\LITE\undefined
-\shorttoc{\RU{Краткое оглавление}\EN{Abridged contents}}{-1} % Only sections
+\shorttoc{\RU{Краткое оглавление}\EN{Abridged contents}\PTBRph{}\ESph{}\PLph{}\ITAph{}}{-1} % Only sections
 \fi
 \tableofcontents
 \cleardoublepage
@@ -208,7 +246,7 @@
 
 \clearpage
 \phantomsection
-\addcontentsline{toc}{chapter}{\RU{Глоссарий}\EN{Glossary}}
+\addcontentsline{toc}{chapter}{\RU{Глоссарий}\EN{Glossary}\PTBRph{}\ESph{}\PLph{}\ITAph{}}
 \printglossaries
 
 \clearpage
@@ -217,7 +255,7 @@
 
 \clearpage
 \phantomsection
-\addcontentsline{toc}{chapter}{\RU{Библиография}\EN{Bibliography}}
+\addcontentsline{toc}{chapter}{\RU{Библиография}\EN{Bibliography}\PTBRph{}\ESph{}\PLph{}\ITAph{}}
 \printbibliography
 
 \end{document}

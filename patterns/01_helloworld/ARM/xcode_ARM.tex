@@ -39,10 +39,17 @@ This is the offset pointing to the \q{Hello world!} string}.
 \RU{Впрочем, здесь её использование избыточно, потому что инструкция \TT{MOV R0, \#0x1686} выше и так обнулила старшую часть регистра}%
 \EN{Its usage here, however, is redundant because the \TT{MOV R0, \#0x1686} instruction above cleared the higher part of the register}.
 \RU{Возможно, это недочет компилятора}\EN{This is probably a shortcoming of the compiler}.
+% TODO:
+% I think, more specifically, the string is not put in the text section,
+% ie. the compiler is actually not using position-independent code,
+% as mentioned in the next paragraph.
+% MOVT is used because the assembly code is generated before the relocation,
+% so the location of the string is not yet known,
+% and the high bits may still be needed.
 
 \index{ARM!\Instructions!ADD}
 \RU{Инструкция}\EN{The} \TT{ADD R0, PC, R0} \RU{прибавляет \ac{PC} к \Reg{0} для вычисления действительного адреса строки \q{Hello world!}. Как нам уже известно, это \q{\PICcode}, поэтому такая корректива необходима}%
-\EN{instruction adds the value in the \ac{PC} to the value in the \Reg{0}, to calculate absolute address of the \q{Hello world!} string. 
+\EN{instruction adds the value in the \ac{PC} to the value in the \Reg{0}, to calculate the absolute address of the \q{Hello world!} string. 
 As we already know, it is \q{\PICcode} so this correction is essential here}.
 
 \RU{Инструкция \TT{BL} вызывает \puts вместо \printf}%

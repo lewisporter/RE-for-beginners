@@ -49,7 +49,7 @@ So, to make things less confusing, we're doing this in \IDA}.
 \RU{Итак, эта инструкция уменьшает \ac{SP}, чтобы он указывал на место в стеке, свободное для записи
 новых значений, затем записывает значения регистров \Reg{4} и \ac{LR} 
 по адресу в памяти, на который указывает измененный регистр \ac{SP}}%
-\EN{This instruction \glspl{decrement} first the \ac{SP} so it points to the place in the stack
+\EN{This instruction first \glspl{decrement} the \ac{SP} so it points to the place in the stack
 that is free for new entries, then it saves the values of the \Reg{4} and \ac{LR} registers at the address
 stored in the modified \ac{SP}}.
 
@@ -60,7 +60,7 @@ stored in the modified \ac{SP}}.
 \EN{It can also be noted that the \TT{STMFD} instruction is a generalization 
 of the \PUSH instruction (extending its features), since it can work with any register, not just with \ac{SP}.}
 \RU{Другими словами, \TT{STMFD} можно использовать для записи набора регистров в указанном месте памяти.}
-\EN{In other words, \TT{STMFD} may be used for storing pack of registers at the specified memory address.}
+\EN{In other words, \TT{STMFD} may be used for storing a set of registers at the specified memory address.}
 
 \index{\PICcode}
 \index{ARM!\Instructions!ADR}
@@ -69,7 +69,7 @@ of the \PUSH instruction (extending its features), since it can work with any re
 \EN{instruction adds or subtracts the value in the \ac{PC} register to the offset where the}
 \TT{hello, world}\EN{ string is located}.
 \RU{Причем здесь \ac{PC}, можно спросить}\EN{How is the \TT{PC} register used here, one might ask}?
-\RU{Притом, что это так называемый \q{\PICcode}}\EN{This is so-called \q{\PICcode}.}
+\RU{Притом, что это так называемый \q{\PICcode}}\EN{This is called \q{\PICcode}.}
 \footnote{
 	\RU{Читайте больше об этом в соответствующем разделе}
 	\EN{Read more about it in relevant section}~(\myref{sec:PIC})
@@ -97,7 +97,7 @@ of the \PUSH instruction (extending its features), since it can work with any re
 \EN{store the address following the \TT{BL} instruction (\TT{0xC}) into the \ac{LR}};
 \item
 \RU{передать управление в \printf, записав адрес этой функции в регистр \ac{PC}}%
-\EN{then pass the control to the \printf by writing its address into the \ac{PC} register}.
+\EN{then pass the control to \printf by writing its address into the \ac{PC} register}.
 \end{itemize}
 
 \RU{Ведь когда функция \printf закончит работу, нужно знать, куда вернуть управление, поэтому закончив работу, всякая функция передает управление по адресу, записанному в регистре \ac{LR}}%
@@ -149,12 +149,12 @@ N.B. \RU{Самая первая инструкция \TT{STMFD} сохрани�
 the control will be returned to the \ac{OS} loader or to a point in a \ac{CRT},
 or something like that.}
 
-\EN{All that allows to omit \TT{BX LR} instruction at the end of the function.}
+\EN{All that allows omitting the \TT{BX LR} instruction at the end of the function.}
 \RU{Всё это позволяет избавиться от инструкции \TT{BX LR} в самом конце функции.}
 
 \index{ARM!DCB}
 \TT{DCB}\RU{~--- директива ассемблера, описывающая массивы байт или ASCII-строк, аналог директивы DB в 
 x86-ассемблере}%
 \EN{~is an assembly language directive defining an array of bytes or ASCII strings, akin to the DB directive 
-in x86-assembly language}.
+in the x86-assembly language}.
 

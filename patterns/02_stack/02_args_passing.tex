@@ -58,6 +58,13 @@ in section 1.4.1 dedicated to subroutines \cite[section 1.4.1]{Knuth:1998:ACP:52
 we could read that one way to supply arguments to a subroutine is simply to list them after the \JMP instruction
 passing control to subroutine. Knuth explains that this method was particularly convenient on IBM System/360.}}.
 \RU{Однако традиционно сложилось, что в x86 и ARM передача аргументов происходит именно через стек.}
+% I am unsure about what this comment means.
+% My guess is that the arguments are put in the memory position after
+% the jump instruction, so you could say:
+% "one way to supply arguments to a subroutine is simply to list them in memory
+% after the \JMP instruction that passes control to the subroutine."
+% Right now, "after" also sounds like it refers to the time after
+% the jump happens, which I think is too late.
 \EN{However, it is a convenient custom in x86 and ARM to use the stack for this purpose.} \\
 \\
 \RU{Кстати, вызываемая функция не имеет информации о количестве переданных ей аргументов.}
@@ -72,7 +79,7 @@ printf("%d %d %d", 1234);
 \end{lstlisting}
 
 \printf \RU{выведет 1234, затем ещё два случайных числа, которые волею случая оказались в стеке рядом.}
-\EN{will print 1234, and then two random numbers, which were laying next to it in the stack.}\\
+\EN{will print 1234, and then two random numbers, which were lying next to it in the stack.}\\
 \\
 \RU{Вот почему не так уж и важно, как объявлять функцию \main}
 \EN{That's why it is not very important how we declare the \main function}: \RU{как}\EN{as} \main, 

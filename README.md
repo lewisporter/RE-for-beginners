@@ -32,8 +32,6 @@ Russian lite:
 
 See also the [ChangeLog](https://github.com/dennis714/RE-for-beginners/blob/master/ChangeLog) for the latest changes.
 
-Please [donate](http://beginners.re/donate.html)!
-
 Want to contribute in some way? Read [here](https://github.com/dennis714/RE-for-beginners/blob/master/CONTRIBUTING.md).
 Do not worry to bother me while writing me about any petty mistakes you found, even if you are not very confident.
 I'm writing for beginners, after all, so beginners' opinions and comments are crucial for my job.

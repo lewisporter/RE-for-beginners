@@ -76,7 +76,7 @@ but \q{two's complement} is the most popular one in computers.}
 as unsigned, then the first number (4294967294) is bigger than the second one (2). 
 If we represent them both as signed, the first one is to be $-2$, and it is smaller than the second (2). 
 That is the reason why conditional jumps~(\myref{sec:Jcc}) are present both for signed (e.g. \JG, \JL) 
-and unsigned (\JA, \JB) operations.} \\
+and unsigned (\JA, \JB) operations.}\PTBRph{}\ESph{}\PLph{}\ITAph{} \\
 \\
 \RU{Для простоты, вот что нужно знать}\EN{For the sake of simplicity, that is what one need to know}:
 \begin{itemize}
@@ -105,6 +105,7 @@ and unsigned (\JA, \JB) operations.} \\
 \item \EN{Promoting to a larger data types is simple:}
       \RU{Преобразование в б\'{о}льшие типы данных обходится легко:} \myref{subsec:sign_extending_32_to_64}.
 
+\label{sec:signednumbers:negation}
 \item \EN{Negation is simple: just invert all bits and add 1.}
 \RU{Изменить знак легко: просто инвертируйте все биты и прибавьте 1.}
 \EN{We can remember that a number of inverse sign is located 

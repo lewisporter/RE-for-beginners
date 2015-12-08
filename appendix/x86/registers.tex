@@ -119,10 +119,10 @@ REP MOVSx, REP CMPSx.
 
 \ac{AKA} \q{instruction pointer}
 \footnote{\RU{Иногда называется также}\EN{Sometimes also called} \q{program counter}}.
-\RU{Обычно всегда указывает на исполняющуюся инструкцию}\EN{Usually always points to the current instruction}.
-\RU{Напрямую модифицировать
-регистр нельзя, хотя можно делать так (что равноценно)}
-\EN{Cannot be modified, however, it is possible to do this (which is equivalent)}:
+\RU{Обычно всегда указывает на инструкцию, которая сейчас будет исполняться
+Напрямую модифицировать регистр нельзя, хотя можно делать так (что равноценно)}%
+\EN{Usually always points to the instruction to be executed right now.
+Cannot be modified, however, it is possible to do this (which is equivalent)}:
 
 \begin{lstlisting}
 MOV EAX, ...

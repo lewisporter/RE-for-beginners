@@ -17,7 +17,7 @@ code fragment:}
 \RU{Эти инструкции делают следующее: сохраняют значение регистра \EBP на будущее, выставляют \EBP равным \ESP, 
 затем подготавливают место в стеке для хранения локальных переменных.}
 \EN{What these instruction do: save the value in the \EBP register,
-sets the value of the \EBP register to the value of the \ESP and then allocate space on the stack 
+set the value of the \EBP register to the value of the \ESP and then allocate space on the stack 
 for local variables.}
 
 \RU{\EBP сохраняет свое значение на протяжении всей функции, он будет использоваться здесь для доступа 
@@ -29,7 +29,7 @@ For the same purpose one can use \ESP, but since it changes over time this appro
 
 \RU{Эпилог функции аннулирует выделенное место в стеке, восстанавливает значение \EBP на старое и возвращает 
 управление в вызывающую функцию:}
-\EN{The function epilogue frees allocated space in the stack, returns the value in the \EBP register back to its initial state 
+\EN{The function epilogue frees the allocated space in the stack, returns the value in the \EBP register back to its initial state 
 and returns the control flow to the \gls{callee}:}
 
 \begin{lstlisting}

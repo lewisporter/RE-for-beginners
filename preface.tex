@@ -1,4 +1,4 @@
-\section*{\RU{Предисловие}\EN{Preface}}
+\section*{\RU{Предисловие}\EN{Preface}\PTBRph{}\ESph{}\PLph{}\ITAph{}}
 
 \iffalse
 \RU{Здесь (будет) немного моих заметок о \gls{reverse engineering} на русском языке для начинающих, 
@@ -21,11 +21,11 @@ all executable software in the world) and ARM code created by \CCpp compilers.}
 This book is about the first meaning.}
 
 \ifx\LITE\undefined
-\subsection*{\RU{Рассмотренные темы}\EN{Topics discussed in-depth}}
+\subsection*{\RU{Рассмотренные темы}\EN{Topics discussed in-depth}\PTBRph{}\ESph{}\PLph{}\ITAph{}}
 
 x86/x64, ARM/ARM64, MIPS, Java/JVM.
 
-\subsection*{\RU{Затронутые темы}\EN{Topics touched upon}}
+\subsection*{\RU{Затронутые темы}\EN{Topics touched upon}\PTBRph{}\ESph{}\PLph{}\ITAph{}}
 
 \oracle (\myref{oracle}),
 Itanium (\myref{itanium}),
@@ -45,7 +45,11 @@ OpenMP (\myref{openmp}),
 SEH (\myref{sec:SEH}).
 \fi
 
-\subsection*{\RU{Об авторе}\EN{About the author}}
+\subsection*{\RU{Упражнения и задачи}\EN{Exercises and tasks}\PTBRph{}\ESph{}\PLph{}\ITAph{}}
+
+\dots \RU{все перемещены на отдельный сайт}\EN{are all moved to the separate website}: \url{http://challenges.re}.
+
+\subsection*{\RU{Об авторе}\EN{About the author}\PTBRph{}\ESph{}\PLph{}\ITAph{}}
 
 \begin{tabularx}{\textwidth}{ l X }
 
@@ -54,17 +58,19 @@ SEH (\myref{sec:SEH}).
 }
 
 &
-\RU{Денис Юричев~--- опытный reverse engineer и программист.}
+\RU{Денис Юричев~--- опытный reverse engineer и программист.}%
 \EN{Dennis Yurichev is an experienced reverse engineer and programmer.}
-\EN{He can be contacted by email:}
+\EN{He can be contacted by email:}%
 \RU{С ним можно контактировать по емейлу:} \textbf{\EMAIL{}}, 
-\EN{or on Skype:}
-\RU{или по Skype:} \textbf{dennis.yurichev}.
+\EN{or on Skype:}\RU{или по Skype:} \textbf{dennis.yurichev}.
 
 % FIXME: no link. \tablefootnote doesn't work
 \end{tabularx}
 
-\subsection*{\RU{Благодарности}\EN{Thanks}}
+% subsections:
+\input{praise}
+
+\subsection*{\RU{Благодарности}\EN{Thanks}\PTBRph{}\ESph{}\PLph{}\ITAph{}}
 
 \RU{Тем, кто много помогал мне отвечая на массу вопросов}\EN{For patiently answering all my questions}:
 \HERMIT, \RU{Слава \q{Avid} Казаков}\EN{Slava \q{Avid} Kazakov}.
@@ -79,7 +85,7 @@ about mistakes and inaccuracies}:
 Arnaud Patard (rtp \RU{на}\EN{on} \#debian-arm IRC),
 \EN{Aliaksandr Autayeu}\RU{Александр Автаев}.
 
-\RU{Переводчику на китайский язык}\EN{For translating the book into Simplified Chinese}: Archer.
+\RU{Переводчикам на китайский язык}\EN{For translating the book into Simplified Chinese}: Antiy Labs (\href{http://antiy.cn}{antiy.cn}) \AndENRU Archer.
 
 \RU{Переводчику на корейский язык}\EN{For translating the book into Korean}: Byungho Min.
 
@@ -88,7 +94,7 @@ Arnaud Patard (rtp \RU{на}\EN{on} \#debian-arm IRC),
 \RU{Владимир Ботов}\EN{Vladimir Botov},
 \RU{Андрей Бражук}\EN{Andrei Brazhuk},
 \RU{Марк}\EN{Mark} ``Logxen'' \RU{Купер}\EN{Cooper},
-Yuan Jochen Kang, Mal Malakov, Lewis Porter.
+Yuan Jochen Kang, Mal Malakov, Lewis Porter, Jarle Thorsen.
 
 \RU{Васил Колев сделал очень много исправлений и указал на многие ошибки.}
 \EN{Vasil Kolev did a great amount of work in proofreading and correcting many mistakes.}
@@ -101,10 +107,69 @@ Yuan Jochen Kang, Mal Malakov, Lewis Porter.
 \RU{Было использовано множество пакетов \LaTeX. Их авторов я также хотел бы поблагодарить.}
 \EN{Many \LaTeX\ packages were used: I would like to thank the authors as well.}
 
+\subsubsection*{\RU{Жертвователи}\EN{Donors}}
+
+\EN{Those who supported me during the time when I wrote significant part of the book:}%
+\RU{Те, кто поддерживал меня во время написании этой книги:}
+
+2 * Oleg Vygovsky (50+100 UAH), 
+Daniel Bilar ($\$$50), 
+James Truscott ($\$$4.5),
+Luis Rocha ($\$$63), 
+Joris van de Vis ($\$$127), 
+Richard S Shultz ($\$$20), 
+Jang Minchang ($\$$20), 
+Shade Atlas (5 AUD), 
+Yao Xiao ($\$$10),
+Pawel Szczur (40 CHF), 
+Justin Simms ($\$$20), 
+Shawn the R0ck ($\$$27), 
+Ki Chan Ahn ($\$$50), 
+Triop AB (100 SEK), 
+Ange Albertini (\euro{}10+50),
+Sergey Lukianov (300 RUR), 
+Ludvig Gislason (200 SEK), 
+Gérard Labadie (\euro{}40), 
+Sergey Volchkov (10 AUD),
+Vankayala Vigneswararao ($\$$50),
+Philippe Teuwen ($\$$4),
+Martin Haeberli ($\$$10),
+Victor Cazacov (\euro{}5),
+Tobias Sturzenegger (10 CHF),
+Sonny Thai ($\$$15),
+Bayna AlZaabi ($\$$75),
+Redfive B.V. (\euro{}25),
+Joona Oskari Heikkilä (\euro{}5),
+Marshall Bishop ($\$$50),
+Nicolas Werner (\euro{}12),
+Jeremy Brown ($\$$100),
+Alexandre Borges ($\$$25),
+Vladimir Dikovski (\euro{}50),
+Jiarui Hong (100.00 SEK),
+Jim Di (500 RUR),
+Tan Vincent ($\$$30),
+Sri Harsha Kandrakota (10 AUD),
+Pillay Harish (10 SGD),
+Timur Valiev (230 RUR),
+Carlos Garcia Prado (\euro{}10),
+Salikov Alexander (500 RUR),
+Oliver Whitehouse (30 GBP),
+Katy Moe ($\$$14),
+Maxim Dyakonov ($\$$3),
+Sebastian Aguilera (\euro{}20),
+Hans-Martin Münch (\euro{}15),
+Jarle Thorsen (100 NOK),
+Vitaly Osipov ($\$$100),
+Yuri Romanov (1000 RUR),
+Aliaksandr Autayeu (\euro{}10),
+Tudor Azoitei ($\$$40),
+Z0vsky (\euro{}10),
+Yu Dai ($\$$10). 
+
+\RU{Огромное спасибо каждому!}\EN{Thanks a lot to every donor!}
+
 % subsections
-\input{donate}
 \input{FAQ}
-\input{praise}
 
 \ifdefined\ebook
 \RU{Это версия формата A5 для электронных читалок}\EN{This is the A5-format version for e-book readers}. 
@@ -118,9 +183,9 @@ Yuan Jochen Kang, Mal Malakov, Lewis Porter.
 
 % {\RU{Целевая аудитория}\EN{Target audience}}
 
-\subsection*{\RU{О переводе на корейский язык}\EN{About the Korean translation}}
+\subsection*{\RU{О переводе на корейский язык}\EN{About the Korean translation}\PTBRph{}\ESph{}\PLph{}\ITAph{}}
 
-\EN{In January 2015, the Acorn publishing company (\href{http://www.acornpub.co.kr}{www.acornpub.co.kr}) in South Korea did huge amount of work in translating and publishing 
+\EN{In January 2015, the Acorn publishing company (\href{http://www.acornpub.co.kr}{www.acornpub.co.kr}) in South Korea did a huge amount of work in translating and publishing 
 my book (as it was in August 2014) into Korean.}
 \RU{В январе 2015, издательство Acorn в Южной Корее сделало много работы в переводе 
 и издании моей книги (по состоянию на август 2014) на корейский язык.}
@@ -135,7 +200,7 @@ my book (as it was in August 2014) into Korean.}
 \end{figure}
 \fi
 
-\RU{Переводил}\EN{Translator is} Byungho Min (\href{http://go.yurichev.com/17344}{twitter/tais9}).
+\RU{Переводил}\EN{The translator is} Byungho Min (\href{http://go.yurichev.com/17344}{twitter/tais9}).
 
 \EN{The cover art was done by my artistic friend, Andy Nechaevsky}
 \RU{Обложку нарисовал мой хороший знакомый художник Андрей Нечаевский}: 

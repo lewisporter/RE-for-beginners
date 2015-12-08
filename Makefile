@@ -1,12 +1,24 @@
-.SUFFIXES: .m4 .ru .en
+.SUFFIXES: .m4 .ru .en .es .ptbr .pl .it
 .m4.en:
 	m4 --define=lang=en $*.m4 >$*.en
 .m4.ru:
 	m4 --define=lang=ru $*.m4 >$*.ru
+.m4.es:
+	m4 --define=lang=es $*.m4 >$*.es
+.m4.ptbr:
+	m4 --define=lang=ptbr $*.m4 >$*.ptbr
+.m4.pl:
+	m4 --define=lang=es $*.m4 >$*.pl
+.m4.it:
+	m4 --define=lang=it $*.m4 >$*.it
 
 M4SOURCES := $(shell find . $(pwd) -name '*.m4')
 RU_LISTINGS := $(M4SOURCES:%.m4=%.ru)
 EN_LISTINGS := $(M4SOURCES:%.m4=%.en)
+ES_LISTINGS := $(M4SOURCES:%.m4=%.es)
+PL_LISTINGS := $(M4SOURCES:%.m4=%.pl)
+PTBR_LISTINGS := $(M4SOURCES:%.m4=%.ptbr)
+IT_LISTINGS := $(M4SOURCES:%.m4=%.it)
 
 all:    russian english russian-A5 english-A5 \
 	russian-lite english-lite russian-A5-lite english-A5-lite
@@ -49,6 +61,7 @@ clean:
 	rm -f *.odt
 	rm -f *.rtf
 
+# there are two xelatex invocations at the end, because \myref{} doesn't show pages correctly otherwise
 define compile
 	rm -f *.fls
 	rm -f *.bbl
@@ -57,6 +70,7 @@ define compile
 	biber $1
 	makeindex $1
 	makeglossaries $1
+	xelatex $1
 	xelatex $1
 endef
 
@@ -83,3 +97,27 @@ russian-A5-lite: $(RU_LISTINGS)
 
 english-A5-lite: $(EN_LISTINGS)
 	$(call compile,Reverse_Engineering_for_Beginners-en-A5-lite)
+
+ES:	$(ES_LISTINGS)
+	$(call compile,Reverse_Engineering_for_Beginners-ES)
+
+PTBR:	$(PTBR_LISTINGS)
+	$(call compile,Reverse_Engineering_for_Beginners-PTBR)
+
+ES-lite: $(ES_LISTINGS)
+	$(call compile,Reverse_Engineering_for_Beginners-ES-lite)
+
+PTBR-lite: $(PTBR_LISTINGS)
+	$(call compile,Reverse_Engineering_for_Beginners-PTBR-lite)
+
+polish:	$(PL_LISTINGS)
+	$(call compile,Reverse_Engineering_for_Beginners-polish)
+
+polish-lite: $(PL_LISTINGS)
+	$(call compile,Reverse_Engineering_for_Beginners-polish-lite)
+
+IT:	$(IT_LISTINGS)
+	$(call compile,Reverse_Engineering_for_Beginners-IT)
+IT-lite: $(IT_LISTINGS)
+	$(call compile,Reverse_Engineering_for_Beginners-IT-lite)
+

@@ -20,6 +20,11 @@ __text:00002B80 80 BD          POP             {R7,PC}
 __cstring:00003E70 48 65 6C 6C 6F 20+aHelloWorld  DCB "Hello world!",0xA,0
 \end{lstlisting}
 
+% Q: If you subtract 0x13D8 from 0x3E70,
+% you actually get a location that is not in this function, or in _puts.
+% How is PC-relative addressing done in THUMB2?
+% A: it's not Thumb-related. there are just mess with two different segments. TODO: rework this listing.
+
 \index{\ThumbTwoMode}
 \index{ARM!\Instructions!BL}
 \index{ARM!\Instructions!BLX}
@@ -82,7 +87,7 @@ __symbolstub1:00003FEC _puts           ; CODE XREF: _hello_world+E
 __symbolstub1:00003FEC 44 F0 9F E5     LDR  PC, =__imp__puts
 \end{lstlisting}
 
-\EN{This is essentially jump to place where \puts address is written in imports' section.}
+\EN{This is essentially a jump to the place where the address of \puts is written in the imports' section.}
 \RU{Это просто переход на место, где записан адрес \puts в секции импортов.}
 
 \RU{Итак, внимательный читатель может задать справедливый вопрос: почему бы не вызывать \puts сразу в 
@@ -117,7 +122,7 @@ This is a list of symbols (functions or global variables) imported from external
 нужно чтобы ему пришлось записать адрес каждого символа только один раз, 
 в соответствующее, выделенное для них, место.}
 \EN{So, in order to reduce the time the \ac{OS} loader needs for completing this procedure, 
-it is good idea if it writes the address of each symbol only once, to a dedicated place.}
+it is good idea to write the address of each symbol only once, to a dedicated place.}
 
 \index{thunk-\RU{функции}\EN{functions}}
 \RU{К тому же, как мы уже убедились, нельзя одной инструкцией загрузить в регистр 32-битное число без обращений к памяти}%
@@ -125,8 +130,8 @@ it is good idea if it writes the address of each symbol only once, to a dedicate
 while using only one instruction without a memory access}.
 \RU{Так что наиболее оптимально выделить отдельную функцию, работающую в режиме ARM, 
 чья единственная цель~--- передавать управление дальше, в динамическую библиотеку.}
-\EN{Therefore, the optimal solution is to allocate a separate function working in ARM mode with sole 
-goal to pass control to the dynamic library}
+\EN{Therefore, the optimal solution is to allocate a separate function working in ARM mode with the sole 
+goal of passing control to the dynamic library}
 \RU{И затем ссылаться на эту короткую функцию из одной инструкции (так называемую \glslink{thunk function}{thunk-функцию}) из Thumb-кода}%
 \EN{and then to jump to this short one-instruction function (the so-called \gls{thunk function}) from the Thumb-code}.
 
@@ -141,18 +146,18 @@ The processor mode, however, is not being switched (hence the absence of an \q{X
 \index{thunk-\RU{функции}\EN{functions}}
 
 \RU{Thunk-функции трудновато понять, вероятно, из-за путаницы в терминах.}
-\EN{Thunk-functions are hard to understand, apparently, because of misnomer.}
+\EN{Thunk-functions are hard to understand, apparently, because of a misnomer.}
 
 \RU{Проще всего представлять их как адаптеры-переходники из одного типа разъемов в другой.}
-\EN{Most simple way to understand it as adaptors or convertors of one type of jack to another.}
+\EN{The simplest way to understand it as adaptors or convertors of one type of jack to another.}
 \RU{Например, адаптер позволяющее вставить в американскую розетку британскую вилку, или наоборот.}
-\EN{For example, an adaptor allowing to insert Britain power plug into USA wall socket, or otherwise.} 
+\EN{For example, an adaptor allowing the insertion of a British power plug into an American wall socket, or vice-versa.} 
 
 \EN{Thunk functions are also sometimes called \IT{wrappers}.}
 \RU{Thunk-функции также иногда называются \IT{wrapper-ами}. \IT{Wrap} в английском языке это \IT{обертывать}, \IT{завертывать}.}
 
 \RU{Вот еще несколько описаний этих функций:}
-\EN{Here are couple more descriptions of these functions:}
+\EN{Here are a couple more descriptions of these functions:}
 
 \begin{framed}
 \begin{quotation}
@@ -170,7 +175,7 @@ Microsoft and IBM have both defined, in their Intel-based systems, a “16-bit e
 running on the same computer and OS (thanks to what is called, in the Microsoft world, 
 WOW which stands for Windows On Windows). MS and IBM have both decided that the process 
 of getting from 16- to 32-bit and vice versa is called a “thunk”; for Windows 95, 
-there is even a tool THUNK.EXE called a “thunk compiler”.
+there is even a tool, THUNK.EXE, called a “thunk compiler”.
 \end{quotation}
 \end{framed}
 % TODO FIXME move to bibliography and quote properly above the quote

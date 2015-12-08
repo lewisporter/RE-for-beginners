@@ -37,7 +37,7 @@ _TEXT	ENDS
 \fi
 
 \RU{Компилятор сгенерировал файл \TT{1.obj}, который впоследствии будет слинкован линкером в \TT{1.exe}.}
-\EN{The compiler generated \TT{1.obj} file, which is to be linked into \TT{1.exe}.}
+\EN{The compiler generated the file, \TT{1.obj}, which is to be linked into \TT{1.exe}.}
 \RU{В нашем случае этот файл состоит из двух сегментов: \TT{CONST} (для данных-констант) и \TT{\_TEXT} (для кода).}
 \EN{In our case, the file contains two segments: \TT{CONST} (for data constants) and \TT{\_TEXT} (for code).}
 
@@ -46,7 +46,7 @@ _TEXT	ENDS
 \RU{Строка \TT{hello, world} в \CCpp имеет тип \TT{const char[]} \cite[p176, 7.3.2]{TCPPPL}, 
 однако не имеет имени.}
 \EN{The string \TT{hello, world} in \CCpp has type \TT{const char[]} \cite[p176, 7.3.2]{TCPPPL},
-however it does not have its own name.}
+but it does not have its own name.}
 \RU{Но компилятору нужно как-то с ней работать, поэтому он дает ей внутреннее имя \TT{\$SG3830}.}%
 \EN{The compiler needs to deal with the string somehow so it defines the internal name \TT{\$SG3830} for it.}%
 
@@ -65,7 +65,7 @@ As we can see, the string is terminated by a zero byte, which is standard for \C
 \RU{Функция \main, как и практически все функции, начинается с пролога и заканчивается эпилогом}%
 \EN{The function \main starts with prologue code and ends with epilogue code (like almost any function)}%
 \footnote{\RU{Об этом смотрите подробнее в разделе о прологе и эпилоге функции}%
-\EN{You can read more about it in section about function prolog and epilog}%
+\EN{You can read more about it in the section about function prologues and epilogues}%
 ~(\myref{sec:prologepilog}).}.
 
 \index{x86!\Instructions!CALL}
@@ -84,7 +84,7 @@ As we can see, the string is terminated by a zero byte, which is standard for \C
 \TT{ADD ESP, 4} \RU{означает прибавить 4 к значению в регистре \ESP.}
 \EN{means add 4 to the \ESP register value.}
 \RU{Почему 4? Так как это 32-битный код, для передачи адреса нужно 4 байта. В x64-коде это 8 байт.}
-\EN{Why 4? Since this is 32-bit program, we need exactly 4 bytes for address passing through the stack. 
+\EN{Why 4? Since this is a 32-bit program, we need exactly 4 bytes for address passing through the stack. 
 If it was x64 code we would need 8 bytes.}
 \TT{ADD ESP, 4} \RU{эквивалентно \TT{POP регистр}, но без использования какого-либо регистра\footnote{Флаги
 процессора, впрочем, модифицируются}.}
@@ -97,7 +97,7 @@ If it was x64 code we would need 8 bytes.}
 \RU{Некоторые компиляторы, например, Intel C++ Compiler, в этой же ситуации могут вместо 
 \ADD сгенерировать \TT{POP ECX} (подобное можно встретить, например, в коде \oracle{}, им скомпилированном),
 что почти то же самое, только портится значение в регистре \ECX.}
-\EN{Some compilers (like the Intel C++ Compiler) for the same purpose may emit \TT{POP ECX} 
+\EN{For the same purpose, some compilers (like the Intel C++ Compiler) may emit \TT{POP ECX} 
 instead of \ADD (e.g., such a pattern can be observed in the \oracle{} code as it is compiled with the Intel C++ compiler).
 This instruction has almost the same effect but the \ECX register contents will be overwritten.}
 \RU{Возможно, компилятор применяет \TT{POP ECX}, потому что эта инструкция короче (1 байт у \TT{POP} против 3 у \TT{ADD}).}
@@ -136,11 +136,11 @@ This instruction has almost the same effect but the \ECX register contents will 
 \RU{что значит \IT{отнять значение в} \EAX \IT{от значения в }\EAX,
 что в любом случае даст 0 в результате.}
 \EN{which means \IT{SUBtract the value in the} \EAX \IT{from the value in} \EAX,
-which in any case resulting in zero.}
+which, in any case, results in zero.}
 
 \index{x86!\Instructions!RET}
 \RU{Самая последняя инструкция \RET возвращает управление в вызывающую функцию.
 Обычно это код \CCpp \ac{CRT}, который, в свою очередь, 
 вернёт управление операционной системе.}
 \EN{The last instruction \RET returns the control to the \gls{caller}.
-Usually, this is \CCpp \ac{CRT} code, which in its turn returns the control to the \ac{OS}.}
+Usually, this is \CCpp \ac{CRT} code, which, in turn, returns control to the \ac{OS}.}

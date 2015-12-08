@@ -108,7 +108,7 @@ to reach an agreement which addresses is to be assigned to whose modules.}
 во второй DLL будут скорректированы.}
 \EN{So that is why if two necessary DLLs for a process have the same base address,
 	one of them will be loaded at this base address, and the other\EMDASH{}at some other free space in process memory,
-and each virtual addresses in the second DLL will be corrected.} \\
+and each virtual addresses in the second DLL will be corrected.}\ESph{}\PTBRph{}\PLph{}\ITAph{} \\
 \\
 \RU{Очень часто линкер в}\EN{Often,} \ac{MSVC} \RU{генерирует .exe-файлы с базовым адресом}
 \EN{the linker generates the .exe files with a base address of} \TT{0x400000}
@@ -144,7 +144,7 @@ fixed and shellcode could call them directly}.
 \EN{method loads your program and all modules it needs at random base addresses, different every time}.
 
 \RU{В PE-файлах, поддержка \ac{ASLR} отмечается выставлением флага}
-\EN{\ac{ASLR} support is denoted in a PE file by setting the flag} \\
+\EN{\ac{ASLR} support is denoted in a PE file by setting the flag}\ESph{}\PTBRph{}\PLph{}\ITAph{} \\
 \TT{IMAGE\_DLL\_CHARACTERISTICS\_DYNAMIC\_BASE} \cite{Russinovich}.
 
 \subsection{Subsystem}

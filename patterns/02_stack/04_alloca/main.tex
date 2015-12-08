@@ -34,7 +34,7 @@ the allocated memory is just \IT{dropped}.}
 записывает его в буфер \TT{buf}. Функция \puts выдает содержимое буфера \TT{buf} в \gls{stdout}. Конечно, можно было бы
 заменить оба этих вызова на один \printf, но здесь нужно проиллюстрировать использование небольшого буфера.}%
 \EN{\TT{\_snprintf()} function works just like \printf, but instead of dumping the result into \gls{stdout} (e.g., to terminal or 
-console), it writes it to the \TT{buf} buffer. Function \puts copies \TT{buf} contents to \gls{stdout}. Of course, these two
+console), it writes it to the \TT{buf} buffer. Function \puts copies the contents of \TT{buf} to \gls{stdout}. Of course, these two
 function calls might be replaced by one \printf call, but we have to illustrate small buffer usage.}
 
 \subsubsection{MSVC}
@@ -91,5 +91,5 @@ use it as memory for the \TT{buf} array.}
 \RU{~--- это аналог}\EN{corresponds to} \TT{mov DWORD PTR [esp+20], 3}
 \RU{в синтаксисе Intel.}\EN{ in Intel-syntax.}
 \RU{Адресация памяти в виде \IT{регистр+смещение} записывается в синтаксисе AT\&T как \TT{смещение(\%{регистр})}.}
-\EN{In AT\&T syntax register+offset format of addressing memory looks like \TT{offset(\%{register})}.}
+\EN{In the AT\&T syntax, the register+offset format of addressing memory looks like \TT{offset(\%{register})}.}
 \fi

@@ -17,5 +17,5 @@ float calculate_machine_epsilon(float start)
 
 void main()
 {
-	printf ("%g\n", calculate_machine_epsilon(1.234567));
+	printf ("%g\n", calculate_machine_epsilon(1.0));
 };

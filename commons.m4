@@ -1,5 +1,9 @@
 divert(-1)define(`_RU', `ifelse(lang,`ru',§$1§)')
 define(`_EN', `ifelse(lang,`en',§$1§)')
+define(`_ES', `ifelse(lang,`es',§$1§)')
+define(`_PL', `ifelse(lang,`pl',§$1§)')
+define(`_PTBR', `ifelse(lang,`ptbr',§$1§)')
+define(`_IT', `ifelse(lang,`it',§$1§)')
 define(`_if',`_EN(`if')_RU(`если')')
 define(`_or',`_EN(`or')_RU(`или')')
 define(`_in',`_EN(`in')_RU(`в')')
@@ -14,4 +18,4 @@ define(`_numvecreg',`_EN(`number of vector registers passed')_RU(`количес
 define(`_print',`_EN(`print')_RU(`вывести')')
 define(`_increment',`_EN(`increment')_RU(`инкремент')')
 define(`_input_value',`_EN(`input value')_RU(`входное значение')')
-divert(0)
+divert(0)dnl
